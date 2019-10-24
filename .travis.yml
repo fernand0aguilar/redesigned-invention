@@ -1,0 +1,29 @@
+dist: xenial
+language: python
+python:
+  - "3.6"
+  
+cache:
+  apt: true
+  pip: true
+  yarn: true
+  directories:
+    - $HOME/download-cache
+
+before_install:
+  - mkdir -p $HOME/download-cache
+  - export DJANGO_SETTINGS_MODULE=backend.settings
+  - export PYTHONPATH=$HOME/builds/fernand0aguilar/web-scrapping
+  - export PIP_USE_MIRRORS=true
+
+install:
+  - nvm install node
+  - cd frontend
+  - yarn install
+  - cd ../backend
+  - pip install -r requirements.txt
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate
+
+script:
+  - python3 manage.py test
