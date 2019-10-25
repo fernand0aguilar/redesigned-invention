@@ -5,6 +5,7 @@ from .models import Votacao
 class VotacaoSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
+            'id',
             'num_votacao',
             'timestamp',
             'sigla_tipo',
