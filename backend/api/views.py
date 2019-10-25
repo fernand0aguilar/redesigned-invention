@@ -8,3 +8,6 @@ class ListVotacao(generics.ListCreateAPIView):
     queryset = Votacao.objects.all()
     serializer_class = VotacaoSerializer
 
+class DetailVotacao(generics.ListCreateAPIView):
+    queryset = Votacao.objects.all()
+    serializer_class = VotacaoSerializer
