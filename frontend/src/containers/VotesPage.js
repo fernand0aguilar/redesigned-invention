@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { getVotes } from '../API';
 import VoteTable from '../components/VoteTable';
+import VoteChart from '../components/VoteChart';
 
 class VotesPage extends Component {
 	state = {
@@ -19,7 +20,15 @@ class VotesPage extends Component {
 
 	render() {
 		const { votes } = this.state;
-		return votes ? <VoteTable votes={votes} /> : <h1>Loading...</h1>;
+		return votes ? (
+			<div>
+				<VoteTable votes={votes} />
+				<br />
+				<VoteChart votes={votes} />
+			</div>
+		) : (
+			<h1>Loading...</h1>
+		);
 	}
 }
 

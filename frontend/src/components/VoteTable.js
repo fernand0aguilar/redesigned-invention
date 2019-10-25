@@ -9,7 +9,7 @@ import 'react-table/react-table.css';
 
 import Vote from './Vote';
 
-export default class components extends Component {
+export default class VoteTable extends Component {
 	constructor(votes) {
 		super();
 		this.state = {
@@ -21,6 +21,8 @@ export default class components extends Component {
 		const { data } = this.state;
 		return (
 			<div>
+				<h1 className="h1-title"> Lista de Votações </h1>
+				<br />
 				<ReactTable
 					data={data.votes}
 					columns={[
