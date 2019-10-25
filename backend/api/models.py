@@ -15,7 +15,7 @@ class Votacao(models.Model):
     sigla_partido = models.CharField(max_length=30)
     uf = models.CharField(max_length=30)
     voto = models.CharField(max_length=30)
-    orient_part = models.CharField(max_length=30)
+    orient_part = models.CharField(max_length=30, null=True, blank=True)
     orient_gov = models.CharField(max_length=30)
 
     def __str__(self):

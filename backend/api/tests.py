@@ -20,38 +20,6 @@ sampleDataArray = json.dumps([
 		"orient_part": "Liberado",
 		"orient_gov": "Obstrução"
 	},
-	{
-		"num_votacao": 2,
-		"timestamp": "2019-08-20T17:25:00",
-		"sigla_tipo": "PL",
-		"numero": "PEC110/2016",
-		"ano": 2016,
-		"obj_votacao": "descreve de maneira mais específica o que está sendo votado em relação à proposição.",
-		"url_inteiro_teor": "um link para um PDF que apresenta o conteúdo da proposição sendo votada",
-		"id_deputado": 123456,
-		"nome": "Deputado Ciclano Fulano",
-		"sigla_partido": "S.PART",
-		"uf": "DF",
-		"voto": "Sim",
-		"orient_part": "Liberado",
-		"orient_gov": "Obstrução"
-	},
-	{
-		"num_votacao": 3,
-		"timestamp": "2019-08-20T17:25:00",
-		"sigla_tipo": "PL",
-		"numero": "PEC110/2016",
-		"ano": 2016,
-		"obj_votacao": "descreve de maneira mais específica o que está sendo votado em relação à proposição.",
-		"url_inteiro_teor": "um link para um PDF que apresenta o conteúdo da proposição sendo votada",
-		"id_deputado": 123456,
-		"nome": "Deputado Ciclano Fulano",
-		"sigla_partido": "S.PART",
-		"uf": "DF",
-		"voto": "Sim",
-		"orient_part": "Liberado",
-		"orient_gov": "Obstrução"
-	}
 ])
 
 
@@ -67,7 +35,7 @@ class VotacaoModelTest(TestCase):
 		
 		sampleData = json.loads(sampleDataArray)
 		firstElementInSampledata = sampleData[0]
-		vote = Votacao.objects.get(id=1)
+		vote = Votacao.objects.latest('id')
 
 		expected_object_num_votacao = vote.num_votacao
 		expected_object_timestamp = vote.timestamp
@@ -103,6 +71,6 @@ class VotacaoModelTest(TestCase):
 		print('Test if content is not valid')
 		sampleData = json.loads(sampleDataArray)
 		firstElementInSampledata = sampleData[0]
-		secondVote = Votacao.objects.get(id=2)
+		secondVote = Votacao.objects.get(id=1)
 		expected_object_num_votacao = secondVote.num_votacao
 		self.assertNotEqual(firstElementInSampledata["num_votacao"], expected_object_num_votacao)
